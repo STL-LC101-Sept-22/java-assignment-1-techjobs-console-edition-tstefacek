@@ -118,8 +118,27 @@ public class TechJobs {
     }
 
     // Print a list of jobs
+    /* DEMO question!! Tests return as contents are identical, tried all sorts of different new line
+        and print(ln) combos to fix the problem */
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+        //checks for data present within the arraylist
+        if (someJobs.size() == 0) {
+            System.out.println("No Results");
+        } else {
+            //iterate over arraylist to access hashmap key/value pairs
+            for (int i = 0; i < someJobs.size(); i++) {
+                //print design before each iteration of the hashmap for/each loop
+                System.out.println("\n*****");
+                //iterate over hashmap values to create a collection of the key/value pairs
+                //for each value job in someJobs arraylist index i....
+                for (Map.Entry<String, String> job : someJobs.get(i).entrySet()) {
+                    //...assign value of each key/value pair per iteration to the following fields
+                    String key = job.getKey();
+                    String value = job.getValue();
+                    System.out.println(key + ": "+ value);
+                }
+                System.out.print("*****\n");
+            }
+        }
     }
 }
