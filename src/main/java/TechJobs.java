@@ -59,12 +59,12 @@ public class TechJobs {
 
                 // What is their search term?
                 System.out.println("\nSearch term:");
-                String searchTerm = in.nextLine();
+                String searchTerm = in.nextLine().toLowerCase();
 
                 if (searchField.equals("all")) {
-                    printJobs(JobData.findByValue(searchTerm));
+                    printJobs(JobData.findByValue(searchTerm.toLowerCase()));
                 } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    printJobs(JobData.findByColumnAndValue(searchField.toLowerCase(), searchTerm.toLowerCase()));
                 }
             }
         }
@@ -118,8 +118,28 @@ public class TechJobs {
     }
 
     // Print a list of jobs
+    /* DEMO question!! Tests return as contents are identical, tried all sorts of different new line
+        and print(ln) combos to fix the problem */
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+        //checks for data present within the arraylist
+        if (someJobs.size() == 0) {
+            //changed println to print to remove space that wasn't expected by tests
+            System.out.print("No Results");
+        } else {
+            //iterate over arraylist to access hashmap key/value pairs
+            for (int i = 0; i < someJobs.size(); i++) {
+                //print design before each iteration of the hashmap for/each loop
+                System.out.println("\n*****");
+                //iterate over hashmap values to create a collection of the key/value pairs
+                //for each value job in someJobs arraylist index i....
+                for (Map.Entry<String, String> job : someJobs.get(i).entrySet()) {
+                    //...assign value of each key/value pair per iteration to the following fields
+                    String key = job.getKey();
+                    String value = job.getValue();
+                    System.out.println(key + ": "+ value);
+                }
+                System.out.print("*****\n");
+            }
+        }
     }
 }
